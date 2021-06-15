@@ -6,7 +6,7 @@ export default function getInterview (state, interview) {
   
   let getIntObj = (intObj) => {
     for (let obj in intObj){
-      if (obj == intId){
+      if (Number(obj) === intId){
         return intObj[obj];
       }
     }

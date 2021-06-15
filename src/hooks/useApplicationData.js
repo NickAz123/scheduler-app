@@ -16,8 +16,8 @@ export default function useApplicationData() {
 
     const newObj = [state.days];
 
-    for (let obj in newObj[0]){
-      if (newObj[0][obj].name === state.day){
+    for (let obj in newObj[0]) {
+      if (newObj[0][obj].name === state.day) {
         newObj[0][obj].spots += 1;
       }
     }
@@ -25,7 +25,7 @@ export default function useApplicationData() {
     return axios.default.delete(`/api/appointments/${id}`).then(() => {
       setState(prev => ({
         ...prev,
-        days: newObj[0] 
+        days: newObj[0]
       }))
     })
 
@@ -53,15 +53,15 @@ export default function useApplicationData() {
     }).then(() => {
       const newObj = [state.days];
 
-      for (let obj in newObj[0]){
-        if (newObj[0][obj].name === state.day && status === false){
+      for (let obj in newObj[0]) {
+        if (newObj[0][obj].name === state.day && status === false) {
           newObj[0][obj].spots -= 1;
         }
       }
 
       setState(prev => ({
         ...prev,
-        days: newObj[0] 
+        days: newObj[0]
       }))
     })
 
@@ -71,5 +71,5 @@ export default function useApplicationData() {
     setState(prev => ({ ...prev, day }));
   }
 
-  return {state, setState, setDay, bookInterview, cancelInterview }
+  return { state, setState, setDay, bookInterview, cancelInterview }
 }
