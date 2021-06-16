@@ -3,18 +3,16 @@ import "components/InterviewerList.scss";
 import InterviewerListItem from "components/InterviewerListItem";
 
 export default function InterviewerList(props) {
-
   const { interviewers } = props;
 
   const interviewerHTML = interviewers.map((interviewer) => {
-
     const check = (interviewerID) => {
       if (interviewerID === interviewer.id) {
         return interviewer;
       } else {
         return false;
       }
-    }
+    };
 
     return (
       <InterviewerListItem
@@ -22,15 +20,15 @@ export default function InterviewerList(props) {
         selected={check(props.interviewer)}
         avatar={interviewer.avatar}
         name={interviewer.name}
-        setInterviewer={event => props.onChange(interviewer.id)}
+        setInterviewer={(event) => props.onChange(interviewer.id)}
       />
-    )
-  })
+    );
+  });
 
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
       <ul className="interviewers__list">{interviewerHTML}</ul>
     </section>
-  )
+  );
 }
