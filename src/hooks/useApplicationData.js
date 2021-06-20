@@ -83,6 +83,7 @@ export default function useApplicationData() {
       });
   }
 
+  //Changes the currently selected day state
   const setDay = (day) => {
     setState((prev) => ({ ...prev, day }));
   };
