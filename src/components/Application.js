@@ -29,8 +29,9 @@ export default function Application() {
         interviewers: all[2].data,
       }));
     });
-  }, []); //This empty dependency array prevents the useEffect from being called multiple times. It throws a non-detrimental error into the browser console, but I could not find a way to prevent useEffect from loading again without upsetting the program.
+  }, []);
 
+  
   return (
     <main className="layout">
       <section className="sidebar">
