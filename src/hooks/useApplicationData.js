@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const axios = require("axios");
 
 export default function useApplicationData() {
@@ -9,6 +9,23 @@ export default function useApplicationData() {
     interviewers: {},
   });
 
+  //Initial Axios Call to set state by fetching API data
+  useEffect(() => {
+    Promise.all([
+      axios.default.get("/api/days"),
+      axios.default.get("/api/appointments"),
+      axios.default.get("/api/interviewers"),
+    ]).then((all) => {
+      setState((prev) => ({
+        ...prev,
+        days: all[0].data,
+        appointments: all[1].data,
+        interviewers: all[2].data,
+      }));
+    });
+  }, []);
+
+  //Removes appointment on confirmationfrom the database via axios and changes the spots key in the days object
   function cancelInterview(id) {
     state.appointments[id].interview = null;
 
@@ -29,6 +46,7 @@ export default function useApplicationData() {
     });
   }
 
+  //On confirmation, updates the applications state and sends the new appointment to the database
   function bookInterview(id, interview, status = false) {
     const appointment = {
       ...state.appointments[id],
